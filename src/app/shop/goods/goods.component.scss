@@ -1,0 +1,16 @@
+.card {
+    
+    transition: transform 1s;
+    &:hover {
+        transform: translateY(-10px);
+    }
+    height: 350px;
+    display: grid;
+    grid-template-rows: 75% 17% 8%;
+}
+.image {
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    width: 250px;
+}

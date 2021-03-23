@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar class="nav" color="warning">
+    <ion-title>shop</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <form [formGroup]="searchFrom" (ngSubmit)="search()" class="searchForm">
+      <div class="search">
+        <ion-item class="searchInput">
+          <ion-label position="floating">Search</ion-label>
+          <ion-input class="input" formControlName="searchText"></ion-input>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item class="type">
+          <ion-label>type</ion-label>
+          <ion-select formControlName="searchType" placeholder="Select One">
+            <ion-select-option value="b">emoji</ion-select-option>
+            <ion-select-option value="m">drygie emoji</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <ion-button color="warning" (click)="search()">Search</ion-button>
+    </form>
+    <ion-list class="cargo">
+      <app-goods *ngFor="let item of cargo" [routerLink]="item._id" [item]="item"></app-goods>
+      <div>
+        <ion-button *ngIf="nextButton" class="next-button" color="warning" (click)="getCargo()">
+          next
+        </ion-button>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>
