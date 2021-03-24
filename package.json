@@ -6,9 +6,9 @@
   "scripts": {
     "ng": "ng",
     "web": "ionic serve",
-    "heroku-postbuild": "ng build",
-    "server": "nodemon ./db/index.js",
-    "start": "node ./db/index.js",
+    "heroku-postbuild": "ionic build",
+    "server": "nodemon index.js",
+    "start": "node index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
