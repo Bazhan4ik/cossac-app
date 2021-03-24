@@ -28,8 +28,6 @@ router.get("/", async (req, res) => {
 router.post("/search", async (req, res) => {
     const { searchText, searchType } = req.body;
     const result = [];
-    console.log(req.body);
-    console.log(searchText.length <= 0 && searchType);
     if (searchText && searchType) {
         const nameAndType = await Goods.find({}, { name: 1, type: 1 });
         const search = nameAndType.filter(({ name, type }) => (name.substring(0, searchText.length) == searchText) && type == searchType);

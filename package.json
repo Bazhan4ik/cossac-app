@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "web": "ionic serve",
-    "heroku-postbuild": "ng build --prod",
+    "heroku-postbuild": "ng build",
     "server": "nodemon ./db/index.js",
     "start": "node ./db/index.js",
     "build": "ng build",
