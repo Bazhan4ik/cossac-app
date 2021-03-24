@@ -17,7 +17,7 @@ mongoose.connect(`mongodb+srv://bazhan:Kaliman228@cluster0.lbe4g.mongodb.net/cos
 
 app.use(express.static(__dirname + "/dist/"));
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "www", "index.html"));
 });
 app.use(cors());
 app.use(bodyparser.json());
