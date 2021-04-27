@@ -1,9 +1,27 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
     <ion-title>info</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="container">
+    <div class="cool-grid">
+      <ion-card *ngFor="let card of cards" >
+        <ion-card-header color="warning">
+          <ion-title>
+            {{ card.title }}
+          </ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="info">
+            {{ card.content }}
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

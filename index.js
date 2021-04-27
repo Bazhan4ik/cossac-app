@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 app.use(cors());
 app.use(bodyparser.json());
 
-let cargo = require("./db/src/controllers/cargo");
+let cargo = require("./db/controllers/cargo");
 app.use("/cargo", cargo);
 
 

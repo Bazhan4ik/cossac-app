@@ -2,12 +2,14 @@
   <div class="image">
     <img [src]="item.img">
   </div>
-  <ion-card-header>
-    <ion-card-title>
-      {{ item.name }}
-    </ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    {{ item.cost }}$
-  </ion-card-content>
+  <div class="info">
+    <ion-card-header class="name">
+      <ion-card-title>
+        {{ item.name }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="cost">
+      {{ item.cost }}$
+    </ion-card-content>
+  </div>
 </ion-card>

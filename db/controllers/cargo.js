@@ -7,7 +7,7 @@ router.get("/:time", async (req, res) => {
     try {
         res.send(await Goods.find({}).limit(5).skip(req.params.time * 5));
     } catch (err) {
-        return console.error(err);
+        return console.error(err); 
     }
 });
 

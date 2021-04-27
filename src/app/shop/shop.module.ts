@@ -10,6 +10,7 @@ import { ShopPage } from './shop.page';
 import { GoodsComponent } from './goods/goods.component';
 import { GoodsInfoComponent } from './goods-info/goods-info.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MenuComponent } from '../menu/menu.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ShopPageRoutingModule
   ],
   declarations: [
+    MenuComponent,
     ShopPage,
     GoodsComponent,
     GoodsInfoComponent
