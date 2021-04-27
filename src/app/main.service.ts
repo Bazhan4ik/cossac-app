@@ -8,8 +8,8 @@ export class MainService {
 
   constructor(private http: HttpClient) { };
 
-  url: string = "http://localhost:3000";
-
+  //url: string = "http://localhost:3000";
+  url = "";
   time: number = 0;
 
 
