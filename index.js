@@ -7,6 +7,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 mongoose.connect(`mongodb+srv://bazhan:Kaliman228@cluster0.lbe4g.mongodb.net/cossac?retryWrites=true&w=majority`, err => {
     if(err) {
         console.log(err);
@@ -16,15 +17,16 @@ mongoose.connect(`mongodb+srv://bazhan:Kaliman228@cluster0.lbe4g.mongodb.net/cos
 });
 
 app.use(express.static(__dirname + "/www/"));
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "www", "index.html"));
-});
-app.use(cors());
+
 app.use(bodyparser.json());
 
 let cargo = require("./db/controllers/cargo");
 app.use("/api/cargo", cargo);
 
+
+app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "www", "index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
