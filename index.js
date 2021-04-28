@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyparser.json());
 
 let cargo = require("./db/controllers/cargo");
-app.use("/cargo", cargo);
+app.use("/api/cargo", cargo);
 
 
 app.listen(PORT, () => {

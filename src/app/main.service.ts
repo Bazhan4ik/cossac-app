@@ -9,7 +9,7 @@ export class MainService {
   constructor(private http: HttpClient) { };
 
   //url: string = "http://localhost:3000";
-  url = "";
+  url = "/api";
   time: number = 0;
 
 
