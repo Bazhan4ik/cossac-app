@@ -8,10 +8,18 @@ export class MainService {
 
   constructor(private http: HttpClient) { };
 
+  what: string;
   //url: string = "http://localhost:3000";
-  url = "/api";
+  url = "";
   time: number = 0;
 
+  getRent(): Promise<Goods[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.url}/cargo/rent`).subscribe((res: Goods[]) => {
+        resolve(res);
+      });
+    });
+  }
 
   getId(id): Promise<Goods> {
     return new Promise((resolve, reject) => {

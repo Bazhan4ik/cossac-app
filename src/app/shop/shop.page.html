@@ -3,35 +3,34 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="title">shop</ion-title>
+    <ion-title class="title">KO3AK</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <div class="container">
-    <form [formGroup]="searchFrom" (ngSubmit)="search()" class="searchForm search-form">
+    <form [formGroup]="searchForm" (ngSubmit)="search()" class="searchForm search-form">
       <div class="search">
         <ion-item class="searchInput">
-          <ion-input class="input" placeholder="Search" formControlName="searchText"></ion-input>
+          <ion-input class="input" placeholder="Пошук" formControlName="searchText"></ion-input>
         </ion-item>
       </div>
       <div class="special-in-relative">
         <ion-item class="type">
-          <ion-label>type</ion-label>
+          <ion-label>Я шукаю...</ion-label>
           <ion-select formControlName="searchType" placeholder="Select One">
-            <ion-select-option value="b">emoji</ion-select-option>
-            <ion-select-option value="m">drygie emoji</ion-select-option>
+            <ion-select-option *ngFor="let t of types" [value]="t.type">{{ t.title }}</ion-select-option>
           </ion-select>
         </ion-item>
       </div>
       <div class="search-button-container">
-        <ion-button class="" color="warning" (click)="search()">Search</ion-button>
+        <ion-button class="" color="warning" (click)="search()">Найти</ion-button>
       </div>
     </form>
     <ion-list class="cargo">
       <app-goods *ngFor="let item of cargo" [routerLink]="item._id" [item]="item"></app-goods>
       <div class="next-button-container">
         <ion-button *ngIf="nextButton" class="next-button" color="warning" (click)="getCargo()">
-          next
+          <ion-icon name="refresh-outline"></ion-icon>
         </ion-button>
       </div>
     </ion-list>

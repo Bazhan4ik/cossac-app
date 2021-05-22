@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>rent</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="info">
+      <h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius sapiente, modi fugiat quasi atque quae fuga provident praesentium repellendus quis voluptas incidunt totam delectus mollitia cum laudantium esse at odio.
+      </h3>
+    </div>
+    <div class="cards">
+      <app-card *ngFor="let goods of cargo" [data]="goods"></app-card>
+    </div>
+  </div>
+</ion-content>

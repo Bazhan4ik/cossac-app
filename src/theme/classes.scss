@@ -1,4 +1,12 @@
 .search-form {
     display: flex;
-    
+}
+
+.footer {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    .location {
+        margin-left: 50px;
+    }
 }

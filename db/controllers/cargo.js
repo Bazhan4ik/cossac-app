@@ -1,6 +1,16 @@
 const router = require("express").Router();
-const { Goods } = require("./../models/goods"); 
+const { Goods, RentGoods } = require("./../models/goods"); 
 
+
+
+
+router.get("/rent", async (req, res) => {
+    try {
+        res.send(await RentGoods.find({}));
+    } catch (err) {
+        return console.error(err);
+    }
+});
 
 
 router.get("/:time", async (req, res) => {
@@ -26,26 +36,48 @@ router.get("/", async (req, res) => {
 
 router.post("/search", async (req, res) => {
     const { searchText, searchType } = req.body;
-    const result = [];
-    if (searchText && searchType) {
-        const nameAndType = await Goods.find({}, { name: 1, type: 1 });
-        const search = nameAndType.filter(({ name, type }) => (name.substring(0, searchText.length) == searchText) && type == searchType);
-        for (let { _id } of search) {
-            result.push(await Goods.findById(_id));
+    let bytype = [];
+    let byname = [];
+    if(searchType.length >= 1 && searchType != "none") {
+        let types = await Goods.find({}, { type: 1 });
+        for(let { type, _id } of types) {
+            if(type == searchType) {
+                bytype.push(_id.toString());
+            }
         }
-    } else if (searchText && !searchType) {
-        const names = await Goods.find({}, { name: 1 });
-        const search = names.filter(({ name }) => name.substring(0, searchText.length) == searchText);
-        for (let { _id } of search) {
-            result.push(await Goods.findById(_id));
-        }
-    } else if (searchText.length <= 0 && searchType) {
-        const types = await Goods.find({}, { type: 1 });
-        const search = types.filter(({ type }) => type == searchType)
-        for(let { _id } of search) {
-            result.push(await Goods.findById(_id));
-        } 
     }
+    if(searchText.length >= 1) {
+        let names = await Goods.find({}, { name: 1 });
+        for(let { name, _id } of names) {
+            for(let i = 0; i < name.length / searchText.length * 2; i++) {
+                if(name.slice(i, searchText.length + i) == searchText) {
+                    byname.push(_id.toString());
+                    break;
+                }
+            }
+        }
+    }
+
+
+    let result = [];
+    if(byname.length >= 1 && bytype.length >= 1) {
+        var filtered = byname.filter(a => bytype.includes(a));
+        for(let i in filtered) {
+            result.push(await Goods.findById(filtered[i]));
+        }
+    } else if(byname.length >= 1) {
+        for(let i of byname) {
+            result.push(await Goods.findById(i));
+        }
+    } else if(bytype.length >= 1) {
+        for(let i of bytype) {
+            result.push(await Goods.findById(i));
+        }
+    } else {
+        result.push(...await Goods.find({}).limit(10));
+    }
+
+
     res.send(result);
 });
 

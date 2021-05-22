@@ -10,9 +10,11 @@
 }
 .image {
     margin-top: 10px;
-    margin-left:auto;
-    margin-right:auto;
-    width: 250px;
+    display: grid;
+    place-items: center;
+}
+img {
+    min-height: 200px;
 }
 
 .info {

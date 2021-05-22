@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 mongoose.pluralize(null);
 
-let Goods = mongoose.model("cargo", {
+const GoodsSchema = mongoose.Schema({
     name: { type: String },
     cost: { type: Number },
     img: { type: String },
     type: { type: String }
 });
 
-module.exports = { Goods }; 
+let Goods = mongoose.model("cargo", GoodsSchema);
+
+let RentGoods = mongoose.model("rent", GoodsSchema);
+
+module.exports = { Goods, RentGoods }; 

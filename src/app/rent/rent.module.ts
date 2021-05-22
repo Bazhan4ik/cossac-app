@@ -4,17 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InfoPageRoutingModule } from './info-routing.module';
+import { RentPageRoutingModule } from './rent-routing.module';
 
-import { InfoPage } from './info.page';
+import { RentPage } from './rent.page';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InfoPageRoutingModule
+    RentPageRoutingModule
   ],
-  declarations: [InfoPage]
+  declarations: [RentPage, CardComponent]
 })
-export class InfoPageModule {}
+export class RentPageModule {}
