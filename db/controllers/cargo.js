@@ -22,7 +22,6 @@ router.get("/:time", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-    console.log(req.params.id);
     try {
         res.send(await Goods.findByIdAndDelete(req.params.id));
     } catch (err) {
@@ -34,48 +33,36 @@ router.get("/", async (req, res) => {
     res.send(await Goods.find({})); 
 });
 
-router.post("/search", async (req, res) => {
-    const { searchText, searchType } = req.body;
-    let bytype = [];
-    let byname = [];
-    if(searchType.length >= 1 && searchType != "none") {
-        let types = await Goods.find({}, { type: 1 });
-        for(let { type, _id } of types) {
-            if(type == searchType) {
-                bytype.push(_id.toString());
-            }
-        }
+router.get("/search/:text/:type", async (req, res) => {
+    const { text, type } = req.params;
+    let names = [];
+    let result = [];
+    if(type.length >= 1 && type != "none") {
+        names = await Goods.find({type: type}, { name: 1 });
+    } else {
+        names = await Goods.find({}, { name: 1 });
     }
-    if(searchText.length >= 1) {
-        let names = await Goods.find({}, { name: 1 });
+    let finalIds = [];
+    if(text.length >= 1 && text != "null") {
         for(let { name, _id } of names) {
-            for(let i = 0; i < name.length / searchText.length * 2; i++) {
-                if(name.slice(i, searchText.length + i) == searchText) {
-                    byname.push(_id.toString());
+            for(let i = 0; i < Math.ceil(name.length / text.length * text.length); i++) {
+                if(name.slice(i, text.length + i) == text) {
+                    finalIds.push(_id);
                     break;
                 }
             }
         }
-    }
-
-
-    let result = [];
-    if(byname.length >= 1 && bytype.length >= 1) {
-        var filtered = byname.filter(a => bytype.includes(a));
-        for(let i in filtered) {
-            result.push(await Goods.findById(filtered[i]));
-        }
-    } else if(byname.length >= 1) {
-        for(let i of byname) {
-            result.push(await Goods.findById(i));
-        }
-    } else if(bytype.length >= 1) {
-        for(let i of bytype) {
-            result.push(await Goods.findById(i));
-        }
     } else {
-        result.push(...await Goods.find({}).limit(10));
+        for(let { _id } of names) {
+            finalIds.push(_id);
+        }
     }
+
+
+    for(let id of finalIds) {
+        result.push(await Goods.findById(id));
+    }
+    
 
 
     res.send(result);
@@ -112,7 +99,6 @@ router.get("/byname/:name", async (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    console.log(req.body);
     let newGoods = Goods(req.body);
     newGoods.save((err, docs) => {
         if(err) {

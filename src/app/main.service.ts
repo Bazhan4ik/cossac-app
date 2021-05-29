@@ -31,7 +31,7 @@ export class MainService {
 
   searchCargo(data): Promise<Goods[]> {
     return new Promise((resolve, reject) => {
-      this.http.post(`${this.url}/cargo/search`, data).subscribe((res: Goods[]) => {
+      this.http.get(`${this.url}/cargo/search/${data.searchText || "null"}/${data.searchType}`).subscribe((res: Goods[]) => {
         resolve(res);
       });
     });

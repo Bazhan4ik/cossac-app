@@ -1,12 +1,21 @@
 export const types = [
     {
-        type: "a",
-        title: "b"
+        type: "mk",
+        title: "Мотокоси"
     },{
-        type: "c",
-        title: "d"
+        type: "b",
+        title: "Бенозопили"
     },{
-        type: "ads",
-        title: "fdsa"
+        type: "gk",
+        title: "Газонокосарки"
+    },{
+        type: "o",
+        title: "Обприскувачі"
+    },{
+        type: "z",
+        title: "Запчастини "
+    },{
+        type: "ei",
+        title: "Електроінструмент "
     }
 ]

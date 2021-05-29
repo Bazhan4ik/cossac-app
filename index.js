@@ -28,7 +28,7 @@ app.use("/cargo", cargo);
 
 
 app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "www", "index.html"));
+    res.sendFile(`${__dirname}/www/index.html`);
 });
 
 app.listen(PORT, () => {
