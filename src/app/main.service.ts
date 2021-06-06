@@ -9,8 +9,8 @@ export class MainService {
   constructor(private http: HttpClient) { };
 
   what: string;
-  //url: string = "http://localhost:3000";
-  url = "";
+  url: string = "http://localhost:3000";
+  //url = "";
   time: number = 0;
 
   getRent(): Promise<Goods[]> {

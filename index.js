@@ -3,12 +3,13 @@ const bodyparser =  require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+const { up, un } = require("./vars");
 
 const PORT = process.env.PORT || 3000;
 
 
-const USER_NAME = process.env.USER_NAME;
-const USER_PASSWORD = process.env.USER_PASSWORD;
+const USER_NAME = process.env.USER_NAME || un;
+const USER_PASSWORD = process.env.USER_PASSWORD || up;
 
 app.use(cors());
 mongoose.connect(`mongodb+srv://${USER_NAME}:${USER_PASSWORD}@cluster0.lbe4g.mongodb.net/cossac?retryWrites=true&w=majority`, err => {
